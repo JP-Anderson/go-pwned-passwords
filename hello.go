@@ -3,5 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Printf("hello, world\n")
+
+	var password = "Password1"
+	fmt.Printf("Secure password: %v \n", password)
+	
+	var bytes = []byte(password)
+	fmt.Printf("Password bytes: %v \n", bytes)
 }
