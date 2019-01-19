@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"crypto/sha1"
+)
 
 func main() {
 
@@ -9,4 +12,11 @@ func main() {
 	
 	var bytes = []byte(password)
 	fmt.Printf("Password bytes: %v \n", bytes)
+	
+	hasher := sha1.New()
+	hasher.Write(bytes)
+	sha := hasher.Sum(nil)
+
+	fmt.Printf("Sha: %v (of type %T) \n", sha, sha)
+	
 }
