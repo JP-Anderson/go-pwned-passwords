@@ -2,8 +2,6 @@ package passwordprocessing
 
 import (
 	"testing"
-	"encoding/hex"
-	"strings"
 )
 
 var shaTestCases = []struct {
@@ -18,8 +16,7 @@ var shaTestCases = []struct {
 func TestStringToSha1(t *testing.T) {
 	for _, testCase := range shaTestCases {
 		t.Run(testCase.input, func(t *testing.T) {
-			output := PasswordStringToSHABytes(testCase.input)
-			shaString := strings.ToUpper(hex.EncodeToString(output))
+			shaString := StringToSha1Hex(testCase.input)
 			if shaString != testCase.base64Sha {
 				t.Errorf("Password Encoding to SHA got %v expected %v", shaString, testCase.base64Sha)
 			}
