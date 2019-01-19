@@ -2,21 +2,15 @@ package main
 
 import (
 	"fmt"
-	"crypto/sha1"
+	"./passwordprocessing"
 )
 
 func main() {
 
 	var password = "Password1"
 	fmt.Printf("Secure password: %v \n", password)
-	
-	var bytes = []byte(password)
-	fmt.Printf("Password bytes: %v \n", bytes)
-	
-	hasher := sha1.New()
-	hasher.Write(bytes)
-	sha := hasher.Sum(nil)
+		
+	shaBytes := passwordprocessing.PasswordStringToSHABytes(password)
 
-	fmt.Printf("Sha: %v (of type %T) \n", sha, sha)
-	
+	fmt.Printf("Sha: %v (of type %T) \n", shaBytes, shaBytes)	
 }
