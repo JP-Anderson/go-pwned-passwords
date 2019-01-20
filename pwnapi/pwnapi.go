@@ -39,6 +39,10 @@ const PwnedPasswordsUrl = "https://api.pwnedpasswords.com/range/%v"
 var api = new(actualPwnedApiClient)
 
 func PasswordHashIsPwned(passwordSha1 string) bool {
+	return passwordHashIsPwned(passwordSha1, api)
+}
+
+func passwordHashIsPwned(passwordSha1 string, apiClient pwnedApiClient) bool {
 	firstFive := passwordSha1[0:5]
 	pwnedHashes := api.getPwnedHashesForHashPrefix(firstFive)
 	partialHash := passwordSha1[5:]
