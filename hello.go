@@ -14,6 +14,6 @@ func main() {
 	theRest := passwordShaHex[5:]
 	fmt.Printf("%v will be sent to api and %v is compared to the returned options", firstFive, theRest)
 	
-	resp := pwnapi.GetPartialHashesForSha(firstFive)
+	resp := pwnapi.PasswordHashIsPwned(firstFive)
 	fmt.Printf("%v", resp)
 }

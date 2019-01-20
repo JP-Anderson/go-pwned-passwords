@@ -8,7 +8,13 @@ import (
 
 const PwnedPasswordsUrl = "https://api.pwnedpasswords.com/range/%v"
 
-func GetPartialHashesForSha(input string) string {
+func PasswordHashIsPwned(passwordSha1 string) string {
+	firstFive := passwordSha1[0:5]
+	pwnedHashes := getPartialHashesForSha(firstFive)
+	return pwnedHashes
+}
+
+func getPartialHashesForSha(input string) string {
 	url := fmt.Sprintf(PwnedPasswordsUrl, input[0:5])
 	resp, err := http.Get(url)
 	if err != nil {
