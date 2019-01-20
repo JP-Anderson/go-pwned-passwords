@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"./passwordprocessing"
+	"./pwnapi"
 )
 
 func main() {
@@ -12,4 +13,7 @@ func main() {
 	firstFive := passwordShaHex[0:5]
 	theRest := passwordShaHex[5:]
 	fmt.Printf("%v will be sent to api and %v is compared to the returned options", firstFive, theRest)
+	
+	resp := pwnapi.GetPartialHashesForSha(firstFive)
+	fmt.Printf("%v", resp)
 }
