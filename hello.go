@@ -6,11 +6,10 @@ import (
 )
 
 func main() {
-
 	var password = "Password1"
-	fmt.Printf("Secure password: %v \n", password)
-		
-	shaBytes := passwordprocessing.PasswordStringToSHABytes(password)
-
-	fmt.Printf("Sha: %v (of type %T) \n", shaBytes, shaBytes)	
+	passwordShaHex := passwordprocessing.StringToSha1Hex(password)
+	fmt.Printf("Sha1(%v) = %v \n", password, passwordShaHex)
+	firstFive := passwordShaHex[0:5]
+	theRest := passwordShaHex[5:]
+	fmt.Printf("%v will be sent to api and %v is compared to the returned options", firstFive, theRest)
 }
